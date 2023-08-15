@@ -6,7 +6,8 @@ let schema = new Schema({
     title:{type:String, required:true},
     city:{type:String, required:true},
     country:{type:String, required:true},
-    url:{type:String, required:true}
+    url:{type:String, required:true},
+    user:{type:Types.ObjectId, ref:'users'}
 
 },{
     timestamps:true
