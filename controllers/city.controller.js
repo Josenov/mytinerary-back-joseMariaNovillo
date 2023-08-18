@@ -85,6 +85,46 @@ const controller = {
 
         }
 
+    },
+
+    updateCity: async (req, res) => {
+
+        try {
+            await City.updateOne({_id: req.params.id}, req.body);
+
+            return res.status(200).json({
+                success: true,
+                message: 'City updated'
+            })
+
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: 'Error: city not updated'
+            })
+
+        }
+
+    },
+
+    deleteCity: async (req, res) => {
+
+        try {
+            await City.deleteOne({_id: req.params.id})
+
+            return res.status(200).json({
+                success: true,
+                message: 'City deleted'
+            })
+
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: 'Error: city not deleted'
+            })
+
+        }
+
     }
 
 }
