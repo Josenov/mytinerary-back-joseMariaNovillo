@@ -4,8 +4,11 @@ let collection = 'users';
 
 const schema = new Schema({
     name: {type: String, required: true},
-    image:{type:String}
-},{
+    image:{type:String},
+    cities:[{type:Types.ObjectId, ref:'cities'}],
+},
+
+{
     timestamps:true
 
 });
