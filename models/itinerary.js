@@ -7,8 +7,11 @@ let itinerarySchema = new Schema({
     duration:{type:Number, required:true},
     likes:{type:Number, required:true},
     hashtags:[{type:String, required:true}],
-    comments:[{type:String, required:true}],
-    user:{type:Types.ObjectId, ref:'users'}
+    comments:{
+        comment:[{type:String, required:true}],
+        user:{type:Types.ObjectId, ref:'users'}        },
+    user:{type:Types.ObjectId, ref:'users'},
+    city:{type:Types.ObjectId, ref:'cities'}
     
 
 },{

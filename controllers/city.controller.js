@@ -13,9 +13,22 @@ const controller = {
             queries.country = new RegExp(`^${req.query.country}`, 'i');
         }
 
+        if (req.query.itineraryId){
+            queries.itinerary = req.query.itineraryId
+        }
+
 
         try {
-            const cities = await City.find(queries).populate('user');
+
+            let cities;
+
+            if(req.query.itinerary === 'true'){
+                cities = await City.find(queries).populate('user').populate('itinerary');
+            } else {
+                cities = await City.find(queries)
+            }
+
+            
 
             if (cities.length > 0) {
 
