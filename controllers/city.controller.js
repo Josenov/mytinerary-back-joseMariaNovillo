@@ -23,7 +23,7 @@ const controller = {
             let cities;
 
             if(req.query.itinerary === 'true'){
-                cities = await City.find(queries).populate('user').populate('itinerary');
+                cities = await City.find(queries);
             } else {
                 cities = await City.find(queries)
             }
@@ -51,7 +51,7 @@ const controller = {
     getCityById: async (req, res) => {
 
         try {
-            const oneCity = await City.findById(req.params.id);
+            const oneCity = await City.findById(req.params.id).populate('user').populate('itinerary');
 
             if (oneCity) {
                 return res.status(200).json({

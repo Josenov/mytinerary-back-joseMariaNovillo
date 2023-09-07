@@ -26,7 +26,7 @@ const controller = {
     getUserById: async (req, res) => {
 
         try {
-            const getUserById = await User.findById(req.params.id)
+            const getUserById = await User.findById(req.params.id).populate('itinerary')
             return res.status(200).json({
                 success: true,
                 user: getUserById

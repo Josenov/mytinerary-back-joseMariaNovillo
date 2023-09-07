@@ -17,7 +17,7 @@ const controller = {
             let getItineraries
 
             if(req.query.city === 'true'){
-                getItineraries = await Itinerary.find().populate('user').populate('city');
+                getItineraries = await Itinerary.find().populate('user');
             } else {
                 getItineraries = await Itinerary.find(queries)
             }
