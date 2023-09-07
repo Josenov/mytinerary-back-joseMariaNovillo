@@ -38,18 +38,21 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: Itineraries not found'
-            })
+            next(error)
 
         }
     },
 
     getItineraryById: async (req, res) => {
 
+        let queries = {};
+
+        if (req.query.userId){
+            queries.user = req.query.userId
+        }
+
         try {
-            const oneItinerary = await Itinerary.findById(req.params.id).populate('city');
+            const oneItinerary = await Itinerary.findById(req.params.id).populate('city').populate('user');
 
             if (oneItinerary) {
                 return res.status(200).json({
@@ -65,10 +68,7 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: Itinerary not found'
-            })
+            next(error)
 
 
         }
@@ -86,10 +86,7 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: Itinerary not created'
-            })
+            next(error)
 
         }
 
@@ -106,10 +103,7 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: Itinerary not updated'
-            })
+            next(error)
 
         }
 
@@ -126,10 +120,7 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: Itinerary not deleted'
-            })
+            next(error)
 
         }
 

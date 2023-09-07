@@ -43,10 +43,7 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: city not found'
-            })
+            next(error)
 
         }
     },
@@ -70,10 +67,7 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: city not found'
-            })
+            next(error)
 
 
         }
@@ -91,10 +85,7 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: city not created'
-            })
+            next(error)
 
         }
 
@@ -131,10 +122,7 @@ const controller = {
             })
 
         } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Error: city not deleted'
-            })
+            next(error)
 
         }
 
