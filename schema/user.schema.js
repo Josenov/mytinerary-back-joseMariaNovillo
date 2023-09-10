@@ -34,9 +34,5 @@ export const createUserSchema = Joi.object({
     .required()
     .uri(),
 
-    role: Joi.string()
-    .required()
-    .messages({
-        'any.required':'role is required'
-    }),
+
 }) 
