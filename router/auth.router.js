@@ -4,12 +4,13 @@ import { accountExistsSignUp } from '../middlewares/auth/accountExistsSignUp.mid
 import { accountExistsSignIn } from '../middlewares/auth/accountExistsSignIn.middleware.js'
 import { accountHasBeenVerified } from '../middlewares/auth/accountHasBeenVerified.middleware.js'
 import { passwordIsOk } from '../middlewares/auth/passwordIsOk.middleware.js'
+import passport from '../middlewares/passport.js'
 
 
 
 
 
-const{signup, signin} = authController
+const{signup, signin, signout} = authController
 
 const router = express.Router()
 
@@ -18,6 +19,7 @@ router.post('/signin', accountExistsSignIn,
 accountHasBeenVerified, 
 passwordIsOk,
 signin )
+router.post('/signout', passport.authenticate('jwt', { session: false}) ,signout )
 
 
 
