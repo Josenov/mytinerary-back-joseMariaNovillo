@@ -33,6 +33,15 @@ export const createUserSchema = Joi.object({
     image: Joi.string()
     .required()
     .uri(),
+    
+
+    country: Joi.string()
+    .min(2)
+    .max(50)
+    .messages({
+        'any.required':'country is required'
+    }),
+
 
 
 }) 

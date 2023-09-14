@@ -43,7 +43,8 @@ const controller = {
                     id: user._id,
                     email: user.email,
                     name: user.name,
-                    image: user.image
+                    image: user.image,
+                    country:user.country
                 },
                 process.env.SECRET_TOKEN,
                 {expiresIn:'5h'}
@@ -85,6 +86,7 @@ const controller = {
                     email,
                     image,
                     password:bcryptjs.hashSync(process.env.STANDARD_PASS, 10),
+                    country,
                     google:true,
                     verified_code:crypto.randomBytes(10).toString('hex')
                 }
@@ -117,7 +119,8 @@ const controller = {
                     user:{
                         name:user.name,
                         email:user.email,
-                        image:user.image
+                        image:user.image,
+                        country:user.country
                     }
                     
                 }
@@ -154,10 +157,12 @@ const controller = {
 
         try {
             return res.status(200).json({
+
                 user:{
                     name:user.name,
                     email:user.email,
-                    image:user.image
+                    image:user.image,
+                    country:user.country
                 }
             })
         } catch (error) {
