@@ -5,23 +5,25 @@ const controller = {
 
     getItineraries: async (req, res) => {
 
-        let queries = {};
 
-        if (req.query.cityId){
-            queries.city = req.query.cityId
-        }
 
 
         try {
-
             let getItineraries
+            let queries = {};
 
-            if(req.query.city === 'true'){
-                getItineraries = await Itinerary.find().populate('user');
-            } else {
-                getItineraries = await Itinerary.find(queries)
+            if (req.query.cityId) {
+                queries.city = req.query.cityId
             }
-            
+
+
+
+            if (req.query.city === 'true') {
+                getItineraries = await Itinerary.find().populate('city');
+            } else {
+                getItineraries = await Itinerary.find(queries).populate('user');
+            }
+
             /* console.log(getItineraries) */
 
 
@@ -47,7 +49,7 @@ const controller = {
 
         let queries = {};
 
-        if (req.query.userId){
+        if (req.query.userId) {
             queries.user = req.query.userId
         }
 
@@ -95,7 +97,7 @@ const controller = {
     updateItinerary: async (req, res) => {
 
         try {
-            await Itinerary.updateOne({_id: req.params.id}, req.body);
+            await Itinerary.updateOne({ _id: req.params.id }, req.body);
 
             return res.status(200).json({
                 success: true,
@@ -112,7 +114,7 @@ const controller = {
     deleteItinerary: async (req, res) => {
 
         try {
-            await Itinerary.deleteOne({_id: req.params.id})
+            await Itinerary.deleteOne({ _id: req.params.id })
 
             return res.status(200).json({
                 success: true,
